@@ -8,13 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		2181F95B268A798E00958D65 /* PokadexApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2181F95A268A798E00958D65 /* PokadexApp.swift */; };
-		2181F95D268A798E00958D65 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2181F95C268A798E00958D65 /* ContentView.swift */; };
 		2181F95F268A79A100958D65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2181F95E268A79A100958D65 /* Assets.xcassets */; };
 		2181F962268A79A100958D65 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2181F961268A79A100958D65 /* Preview Assets.xcassets */; };
 		2181F964268A79A100958D65 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2181F963268A79A100958D65 /* Persistence.swift */; };
 		2181F967268A79A100958D65 /* Pokadex.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2181F965268A79A100958D65 /* Pokadex.xcdatamodeld */; };
 		2181F972268A79A200958D65 /* PokadexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2181F971268A79A200958D65 /* PokadexTests.swift */; };
 		2181F97D268A79A200958D65 /* PokadexUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2181F97C268A79A200958D65 /* PokadexUITests.swift */; };
+		21B53490268B3F1E003F48AB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B5348F268B3F1E003F48AB /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +37,6 @@
 /* Begin PBXFileReference section */
 		2181F957268A798E00958D65 /* Pokadex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokadex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2181F95A268A798E00958D65 /* PokadexApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokadexApp.swift; sourceTree = "<group>"; };
-		2181F95C268A798E00958D65 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2181F95E268A79A100958D65 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2181F961268A79A100958D65 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2181F963268A79A100958D65 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -49,6 +48,7 @@
 		2181F978268A79A200958D65 /* PokadexUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokadexUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2181F97C268A79A200958D65 /* PokadexUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokadexUITests.swift; sourceTree = "<group>"; };
 		2181F97E268A79A200958D65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		21B5348F268B3F1E003F48AB /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,8 +99,10 @@
 		2181F959268A798E00958D65 /* Pokadex */ = {
 			isa = PBXGroup;
 			children = (
+				21B53491268B3F29003F48AB /* ViewModel */,
+				21B5348E268B3F1E003F48AB /* View */,
+				21B5348D268B3EF3003F48AB /* Model */,
 				2181F95A268A798E00958D65 /* PokadexApp.swift */,
-				2181F95C268A798E00958D65 /* ContentView.swift */,
 				2181F95E268A79A100958D65 /* Assets.xcassets */,
 				2181F963268A79A100958D65 /* Persistence.swift */,
 				2181F968268A79A100958D65 /* Info.plist */,
@@ -134,6 +136,28 @@
 				2181F97E268A79A200958D65 /* Info.plist */,
 			);
 			path = PokadexUITests;
+			sourceTree = "<group>";
+		};
+		21B5348D268B3EF3003F48AB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		21B5348E268B3F1E003F48AB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				21B5348F268B3F1E003F48AB /* ContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		21B53491268B3F29003F48AB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,8 +290,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2181F967268A79A100958D65 /* Pokadex.xcdatamodeld in Sources */,
+				21B53490268B3F1E003F48AB /* ContentView.swift in Sources */,
 				2181F964268A79A100958D65 /* Persistence.swift in Sources */,
-				2181F95D268A798E00958D65 /* ContentView.swift in Sources */,
 				2181F95B268A798E00958D65 /* PokadexApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -438,7 +462,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = DGL.Pokadex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -460,7 +484,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = DGL.Pokadex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
