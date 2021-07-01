@@ -1,6 +1,6 @@
 //
 //  Persistence.swift
-//  Pokadex
+//  Pokedex
 //
 //  Created by David Lockwood on 28/06/2021.
 //
@@ -31,7 +31,7 @@ struct PersistenceController {
     let container: NSPersistentCloudKitContainer
 
     init(inMemory: Bool = false) {
-        container = NSPersistentCloudKitContainer(name: "Pokadex")
+        container = NSPersistentCloudKitContainer(name: "Pokedex")
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
