@@ -8,6 +8,8 @@
 import Foundation
 struct PokemonModel : Codable {
     let name : String
+    let height : Int
+    let weight : Int
     let sprites : Sprites
     let types : [Types]
     let stats : [Stats]

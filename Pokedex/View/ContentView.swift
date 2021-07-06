@@ -8,11 +8,24 @@
 import SwiftUI
 import CoreData
 
+let rowHeight : CGFloat = 61
+var typeHeight : CGFloat = rowHeight / 3
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
+    //selected pokemon class containing pointer to pokemonViewModel. Passed into list view and row (updated when a row is clicked) and into pokemon view for when the pokemon view is opened
+    var selectedPokemon : SelectedPokemon = SelectedPokemon()
+    //state which controls whether the pokemon view is opened or closed. Passed into list view so updated when row is clicked and into pokemon view itself
+    @State var pokemonViewOpen : Bool = false
     var body: some View {
-        PokemonListView()
-            
+        return ZStack
+        {
+            GeometryReader { geometry in
+                //list of pokemon
+                PokemonListView(selectedPokemon: selectedPokemon, pokemonViewOpen: $pokemonViewOpen, rowWidth: geometry.size.width)
+                //pokemon detail view
+                PokemonView(selectedPokemon: selectedPokemon, open: $pokemonViewOpen, screenGeometry: geometry)
+            }
+       }
     }
 }
 
