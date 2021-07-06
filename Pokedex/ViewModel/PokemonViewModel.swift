@@ -50,7 +50,7 @@ class PokemonViewModel : ObservableObject {
     private class func color(type: String) -> Color {
         switch type {
         case "normal":
-            return Color(UIColor.lightGray)
+            return Color(UIColor.systemBlue)
         case "fighting":
             return Color.orange
         case "flying":
@@ -64,7 +64,7 @@ class PokemonViewModel : ObservableObject {
         case "bug":
             return Color(UIColor.systemIndigo)
         case "ghost":
-            return Color(UIColor.lightText)
+            return Color(UIColor.lightGray)
         case "steel":
             return Color(UIColor.systemGray3)
         case "fire":
@@ -86,7 +86,7 @@ class PokemonViewModel : ObservableObject {
         case "fairy":
             return Color.pink
         case "unknown":
-            return Color.white
+            return Color(UIColor.systemPurple)
         case "shadow":
             return Color.purple
         default:

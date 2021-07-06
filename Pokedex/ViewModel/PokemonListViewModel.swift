@@ -39,4 +39,10 @@ class PokemonListViewModel : ObservableObject {
         }
         task.resume()
     }
+    //filter pokemon list by name
+    func filteredPokemon(prefix : String)-> [Pokemon]
+    {
+        let lowerPrefix : String = prefix.lowercased()
+        return pokemon.filter({$0.name.lowercased().hasPrefix(lowerPrefix)})
+    }
 }

@@ -17,9 +17,28 @@ struct PokedexApp: App {
 
         return WindowGroup {
             ContentView()
-            .environment(\.urlImageService, urlImageService)
-            .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environment(\.urlImageService, urlImageService)
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            //this func adds a tap gesture recognizer to the entire app, dismissing the keyboard on tap
+                .onAppear(perform:UIApplication.shared.addTapGestureRecognizer)
         }
-       
+    }
+}
+//extensions that add a gesture recognizer to app that dismisses keyboard on tap
+extension UIApplication {
+    func addTapGestureRecognizer()
+    {
+        guard let window = windows.first else { return }
+        let tapGesture = UITapGestureRecognizer(target: window, action: #selector(UIView.endEditing))
+        tapGesture.requiresExclusiveTouchType = false
+        tapGesture.cancelsTouchesInView = false
+        tapGesture.delegate = self
+        window.addGestureRecognizer(tapGesture)
+    }
+}
+
+extension UIApplication: UIGestureRecognizerDelegate {
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }

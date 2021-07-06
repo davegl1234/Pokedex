@@ -6,13 +6,13 @@
 //
 import SwiftUI
 import URLImage
-fileprivate struct RoundedCorner: Shape {
+struct RoundedCorner: Shape {
 
-    fileprivate var radius: CGFloat = .infinity
-    fileprivate var corners: UIRectCorner = .allCorners
+    var radius: CGFloat = .infinity
+    var corners: UIRectCorner = .allCorners
 
     
-    fileprivate func path(in rect: CGRect) -> Path {
+    func path(in rect: CGRect) -> Path {
         let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
         return Path(path.cgPath)
     }
@@ -151,7 +151,7 @@ struct PokemonView : View {
                     .offset(y : open ? rowHeight * 2 : 0)
                     .cornerRadius(10, corners: [.topRight, .topLeft])
                     //colored boreder around the background
-                    .overlay(RoundedCorner(radius: 10, corners: [.topRight, .topLeft]).stroke(selectedPokemon.pokemonViewModel != nil ? selectedPokemon.pokemonViewModel!.typeColor : .clear, lineWidth: 5).offset(y : open ? rowHeight * 2 : 0) .padding(.bottom, open ? rowHeight * 2 : 0))
+                    .overlay(RoundedCorner(radius: 10, corners: [.topRight, .topLeft]).stroke(selectedPokemon.pokemonViewModel != nil ? selectedPokemon.pokemonViewModel!.typeColor : .clear, lineWidth: 5).offset(y : open ? rowHeight * 2 : 0).padding(.bottom, open ? rowHeight * 2 : 0))
                     )
             //add gesture to background to open/close swipe up/down
                     .gesture(

@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2139631A269498FC00A553C4 /* PokemonSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21396319269498FC00A553C4 /* PokemonSearchBar.swift */; };
+		2139631D2694A05700A553C4 /* FASwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2139631C2694A05700A553C4 /* FASwiftUI */; };
+		213963222694A23600A553C4 /* Font Awesome 5 Brands-Regular-400.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2139631F2694A23600A553C4 /* Font Awesome 5 Brands-Regular-400.otf */; };
+		213963232694A23600A553C4 /* Font Awesome 5 Brands-Regular-400.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2139631F2694A23600A553C4 /* Font Awesome 5 Brands-Regular-400.otf */; };
+		213963242694A23600A553C4 /* Font Awesome 5 Brands-Regular-400.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2139631F2694A23600A553C4 /* Font Awesome 5 Brands-Regular-400.otf */; };
+		213963252694A23600A553C4 /* Font Awesome 5 Free-Solid-900.otf in Resources */ = {isa = PBXBuildFile; fileRef = 213963202694A23600A553C4 /* Font Awesome 5 Free-Solid-900.otf */; };
+		213963262694A23600A553C4 /* Font Awesome 5 Free-Solid-900.otf in Resources */ = {isa = PBXBuildFile; fileRef = 213963202694A23600A553C4 /* Font Awesome 5 Free-Solid-900.otf */; };
+		213963272694A23600A553C4 /* Font Awesome 5 Free-Solid-900.otf in Resources */ = {isa = PBXBuildFile; fileRef = 213963202694A23600A553C4 /* Font Awesome 5 Free-Solid-900.otf */; };
+		213963282694A23600A553C4 /* Font Awesome 5 Free-Regular-400.otf in Resources */ = {isa = PBXBuildFile; fileRef = 213963212694A23600A553C4 /* Font Awesome 5 Free-Regular-400.otf */; };
+		213963292694A23600A553C4 /* Font Awesome 5 Free-Regular-400.otf in Resources */ = {isa = PBXBuildFile; fileRef = 213963212694A23600A553C4 /* Font Awesome 5 Free-Regular-400.otf */; };
+		2139632A2694A23600A553C4 /* Font Awesome 5 Free-Regular-400.otf in Resources */ = {isa = PBXBuildFile; fileRef = 213963212694A23600A553C4 /* Font Awesome 5 Free-Regular-400.otf */; };
+		2139632C2694A43600A553C4 /* icons.json in Resources */ = {isa = PBXBuildFile; fileRef = 2139632B2694A43600A553C4 /* icons.json */; };
+		2139632D2694A43600A553C4 /* icons.json in Resources */ = {isa = PBXBuildFile; fileRef = 2139632B2694A43600A553C4 /* icons.json */; };
+		2139632E2694A43600A553C4 /* icons.json in Resources */ = {isa = PBXBuildFile; fileRef = 2139632B2694A43600A553C4 /* icons.json */; };
 		215740B4268F6A25000D3654 /* PokemonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215740B3268F6A25000D3654 /* PokemonView.swift */; };
 		21619C1F269329D100B1F1DE /* PokemonStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21619C1E269329D100B1F1DE /* PokemonStatsView.swift */; };
 		21663E422690DE160092C061 /* PokemonTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21663E412690DE160092C061 /* PokemonTypeView.swift */; };
@@ -47,6 +61,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		21396319269498FC00A553C4 /* PokemonSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonSearchBar.swift; sourceTree = "<group>"; };
+		2139631F2694A23600A553C4 /* Font Awesome 5 Brands-Regular-400.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Font Awesome 5 Brands-Regular-400.otf"; sourceTree = "<group>"; };
+		213963202694A23600A553C4 /* Font Awesome 5 Free-Solid-900.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Font Awesome 5 Free-Solid-900.otf"; sourceTree = "<group>"; };
+		213963212694A23600A553C4 /* Font Awesome 5 Free-Regular-400.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Font Awesome 5 Free-Regular-400.otf"; sourceTree = "<group>"; };
+		2139632B2694A43600A553C4 /* icons.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = icons.json; sourceTree = "<group>"; };
 		215740B3268F6A25000D3654 /* PokemonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonView.swift; sourceTree = "<group>"; };
 		21619C1E269329D100B1F1DE /* PokemonStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonStatsView.swift; sourceTree = "<group>"; };
 		21663E412690DE160092C061 /* PokemonTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTypeView.swift; sourceTree = "<group>"; };
@@ -80,6 +99,7 @@
 			files = (
 				21B534AC268CACD7003F48AB /* URLImage in Frameworks */,
 				21B534AA268CACD7003F48AB /* URLImageStore in Frameworks */,
+				2139631D2694A05700A553C4 /* FASwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +120,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2139631E2694A1EA00A553C4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2139632B2694A43600A553C4 /* icons.json */,
+				2139631F2694A23600A553C4 /* Font Awesome 5 Brands-Regular-400.otf */,
+				213963212694A23600A553C4 /* Font Awesome 5 Free-Regular-400.otf */,
+				213963202694A23600A553C4 /* Font Awesome 5 Free-Solid-900.otf */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		2181F94E268A798E00958D65 = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +154,7 @@
 		2181F959268A798E00958D65 /* Pokedex */ = {
 			isa = PBXGroup;
 			children = (
+				2139631E2694A1EA00A553C4 /* Resources */,
 				21B5348E268B3F1E003F48AB /* View */,
 				21B5348D268B3EF3003F48AB /* Model */,
 				21B53491268B3F29003F48AB /* ViewModel */,
@@ -181,6 +213,7 @@
 				21663E412690DE160092C061 /* PokemonTypeView.swift */,
 				21663E432690DE310092C061 /* PokemonNameView.swift */,
 				21619C1E269329D100B1F1DE /* PokemonStatsView.swift */,
+				21396319269498FC00A553C4 /* PokemonSearchBar.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -213,6 +246,7 @@
 			packageProductDependencies = (
 				21B534A9268CACD7003F48AB /* URLImageStore */,
 				21B534AB268CACD7003F48AB /* URLImage */,
+				2139631C2694A05700A553C4 /* FASwiftUI */,
 			);
 			productName = Pokadex;
 			productReference = 2181F957268A798E00958D65 /* Pokedex.app */;
@@ -287,6 +321,7 @@
 			mainGroup = 2181F94E268A798E00958D65;
 			packageReferences = (
 				21B534A8268CACD7003F48AB /* XCRemoteSwiftPackageReference "url-image" */,
+				2139631B2694A05700A553C4 /* XCRemoteSwiftPackageReference "FASwiftUI" */,
 			);
 			productRefGroup = 2181F958268A798E00958D65 /* Products */;
 			projectDirPath = "";
@@ -304,8 +339,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2139632C2694A43600A553C4 /* icons.json in Resources */,
 				2181F962268A79A100958D65 /* Preview Assets.xcassets in Resources */,
+				213963222694A23600A553C4 /* Font Awesome 5 Brands-Regular-400.otf in Resources */,
 				2181F95F268A79A100958D65 /* Assets.xcassets in Resources */,
+				213963252694A23600A553C4 /* Font Awesome 5 Free-Solid-900.otf in Resources */,
+				213963282694A23600A553C4 /* Font Awesome 5 Free-Regular-400.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,6 +352,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				213963232694A23600A553C4 /* Font Awesome 5 Brands-Regular-400.otf in Resources */,
+				213963292694A23600A553C4 /* Font Awesome 5 Free-Regular-400.otf in Resources */,
+				2139632D2694A43600A553C4 /* icons.json in Resources */,
+				213963262694A23600A553C4 /* Font Awesome 5 Free-Solid-900.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,6 +363,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				213963242694A23600A553C4 /* Font Awesome 5 Brands-Regular-400.otf in Resources */,
+				2139632A2694A23600A553C4 /* Font Awesome 5 Free-Regular-400.otf in Resources */,
+				2139632E2694A43600A553C4 /* icons.json in Resources */,
+				213963272694A23600A553C4 /* Font Awesome 5 Free-Solid-900.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,6 +391,7 @@
 				21B53499268C8DE7003F48AB /* PokemonListModel.swift in Sources */,
 				21B5349F268C9112003F48AB /* PokemonListView.swift in Sources */,
 				21B534A1268C9132003F48AB /* PokemonRow.swift in Sources */,
+				2139631A269498FC00A553C4 /* PokemonSearchBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -665,6 +713,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2139631B2694A05700A553C4 /* XCRemoteSwiftPackageReference "FASwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mattmaddux/FASwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.4;
+			};
+		};
 		21B534A8268CACD7003F48AB /* XCRemoteSwiftPackageReference "url-image" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/dmytro-anokhin/url-image";
@@ -676,6 +732,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2139631C2694A05700A553C4 /* FASwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2139631B2694A05700A553C4 /* XCRemoteSwiftPackageReference "FASwiftUI" */;
+			productName = FASwiftUI;
+		};
 		21B534A9268CACD7003F48AB /* URLImageStore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 21B534A8268CACD7003F48AB /* XCRemoteSwiftPackageReference "url-image" */;

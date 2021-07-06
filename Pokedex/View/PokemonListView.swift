@@ -14,13 +14,19 @@ struct PokemonListView: View {
     var selectedPokemon : SelectedPokemon
     @Binding var pokemonViewOpen : Bool
     let rowWidth : CGFloat
+    @Binding var searchString : String
     var body: some View {
         //Calculate some layout variables here as per list and only need to be done once
         let typeYOffset : CGFloat = (rowHeight / 2) + (((rowHeight / 2) - (rowHeight / 3))/2)
         let imageLength : CGFloat = rowHeight - 7
         if pokemonListViewModel.pokemon.count > 20 {
             List{
-                ForEach(pokemonListViewModel.pokemon, id: \.self) { poke in
+                //add dummy row at the top. On load this appears beneath the search bar, but allows the list to scroll underneath the search bar.
+                listColor
+                .listRowInsets(EdgeInsets(top: -1, leading: 0, bottom: 0, trailing: 0))
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                //if no search prefix entered, use the pokemon list, otherwise filter the pokemon list
+                ForEach(searchString == "" ? pokemonListViewModel.pokemon : pokemonListViewModel.filteredPokemon(prefix: searchString), id: \.self) { poke in
                     PokemonRow(name: poke.name, rowWidth: rowWidth, typeYOffset: typeYOffset, imageLength : imageLength, selectedPokemon: selectedPokemon, pokemonViewOpen : $pokemonViewOpen)
                 }//hide row seperators
                 .listRowInsets(EdgeInsets(top: -1, leading: 0, bottom: 0, trailing: 0))
@@ -39,7 +45,7 @@ struct PokemonListView: View {
 struct PokemonListView_Previews: PreviewProvider {
     static var previews: some View {
         GeometryReader{ geometry in
-            PokemonListView(selectedPokemon: SelectedPokemon(), pokemonViewOpen: .constant(false), rowWidth : geometry.size.width )
+            PokemonListView(selectedPokemon: SelectedPokemon(), pokemonViewOpen: .constant(false), rowWidth : geometry.size.width, searchString: .constant(""))
         }
     }
 }
