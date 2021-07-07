@@ -10,10 +10,7 @@ class PokemonListViewModel : ObservableObject {
     
     let baseURL = "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=200"
     
-    @Published var pokemon = [Pokemon]()
-    
-    
-    
+    @Published var pokemon = [Pokemon]()       
     init() {
         getPokemonList()
     }
@@ -38,11 +35,5 @@ class PokemonListViewModel : ObservableObject {
             }
         }
         task.resume()
-    }
-    //filter pokemon list by name
-    func filteredPokemon(prefix : String)-> [Pokemon]
-    {
-        let lowerPrefix : String = prefix.lowercased()
-        return pokemon.filter({$0.name.lowercased().hasPrefix(lowerPrefix)})
     }
 }

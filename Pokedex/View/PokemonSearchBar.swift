@@ -9,6 +9,7 @@ import SwiftUI
 import FASwiftUI
 struct PokemonSearchBar: View {
     @Binding var searchString : String
+    @Binding var favouriteFilter : Bool
     @State var inSearch : Bool = false
     var body: some View {
         ZStack(alignment : .leading){
@@ -37,7 +38,6 @@ struct PokemonSearchBar: View {
                 {
                     //if we have a search string, present clear button on the right of the search bar.
                     FAText(iconName: "times-circle", size: rowHeight / 2).foregroundColor(Color.purple)
-                        //.frame(alignment :.top)
                         .onTapGesture {
                             //if tapped, clear search string
                             searchString = ""
@@ -45,12 +45,19 @@ struct PokemonSearchBar: View {
                         //offset so it sits just inside text field
                         .offset(x : -(rowHeight / 2))
                 }
+                FAText(iconName: "Star", size: rowHeight / 2, style : favouriteFilter ? .solid : .regular).foregroundColor(Color.gold)
+                    .onTapGesture {
+                        favouriteFilter.toggle()
+                }
+                .offset(x : -(rowHeight / 2))
+                
             }.frame(maxWidth : .infinity, maxHeight : .infinity)
             .padding(.leading, 8)
+            .padding(.trailing, -(rowHeight)/2 + 8)
         }.frame(maxWidth : .infinity, maxHeight : rowHeight / 1.5, alignment : .leading)
         .padding(8)
         .background(
-            backgroundColor
+            Color.pokadexBackgroundColor
                 //curve background, with a curved border
                 .cornerRadius(10, corners: [.topLeft, .topRight, .bottomLeft, .bottomRight])
                 .overlay(RoundedCorner(radius: 10, corners: [.topRight, .topLeft, .bottomLeft, .bottomRight]).stroke(Color.purple, lineWidth: 5))
@@ -61,7 +68,7 @@ struct PokemonSearchBar: View {
 
 struct PokemonSearchBar_Previews: PreviewProvider {
     static var previews: some View {
-        PokemonSearchBar(searchString: .constant(""))
+        PokemonSearchBar(searchString: .constant(""), favouriteFilter: .constant(false))
     }
 }
 

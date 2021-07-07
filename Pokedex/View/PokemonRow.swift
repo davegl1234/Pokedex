@@ -6,15 +6,22 @@
 //
 import SwiftUI
 import URLImage
+import FASwiftUI
 struct PokemonRow: View {
+    @Environment(\.managedObjectContext) private var viewContext
     
-    var name: String
+    var pokemon : Pokemon
+    //@State var favourite : Bool
     var rowWidth : CGFloat
     var typeYOffset : CGFloat
     var imageLength : CGFloat
     @StateObject var pokemonViewModel = PokemonViewModel()
     var selectedPokemon : SelectedPokemon
     @Binding var pokemonViewOpen : Bool
+    //passed in favourite reference. Can be nil.
+    let favourite : PokemonFavourite?
+    //whether the pokemon is a favourite or not. Controls the favourite icon state.
+    @State var isFavourite : Bool
     var body: some View {
         //if we have pokeman detail
         if pokemonViewModel.sprite != "" {
@@ -46,7 +53,7 @@ struct PokemonRow: View {
                             .padding(5)
                             .clipShape(Circle())
                             .shadow(radius: 10)
-                            .overlay(Circle().stroke(pokemonViewModel.typeColor, lineWidth: 5)).background(listColor)
+                            .overlay(Circle().stroke(pokemonViewModel.typeColor, lineWidth: 5)).background(Color.pokadexListColor)
                     } failure: { error, retry in
                         //TODO - on failure
                         //print("error")
@@ -60,7 +67,7 @@ struct PokemonRow: View {
                             .padding(5)
                             .clipShape(Circle())
                             .shadow(radius: 10)
-                            .overlay(Circle().stroke(pokemonViewModel.typeColor, lineWidth: 5)).background(listColor)
+                            .overlay(Circle().stroke(pokemonViewModel.typeColor, lineWidth: 5)).background(Color.pokadexListColor)
                     }
                     //also clip the imageView as circle to allow the name bar to pass underneath
                     .clipShape(Circle())
@@ -72,6 +79,20 @@ struct PokemonRow: View {
                         PokemonTypeView(rowWidth: rowWidth, pokemon: pokemonViewModel)
                         //scale type panel to row width
                         .frame(width: rowWidth * (1/6))
+                        //display favourite icon, either outline or solid
+                        FAText(iconName: "Star", size: typeHeight, style: isFavourite ? .solid : .regular).foregroundColor(Color.gold)
+                            .onTapGesture {
+                                //on tap, toggle favourite status, insert/delete from favourites persistant data
+                                isFavourite.toggle()
+                                if (favourite == nil)
+                                {
+                                    let newFavourite = PokemonFavourite(context: viewContext)
+                                    newFavourite.name = pokemon.name
+                                }else{
+                                    viewContext.delete(favourite!)
+                                }
+                            }
+                            
                     }//place detail stack based on row height (pre calculated)
                     .frame(minWidth : 0 , maxWidth : .infinity, minHeight : 0 , maxHeight: typeHeight , alignment: .bottomLeading).offset(x: rowHeight + 5, y:typeYOffset)
                 }//size of row, width fills entire list
@@ -84,7 +105,7 @@ struct PokemonRow: View {
                 .progressViewStyle(CircularProgressViewStyle())
                 .onAppear{
                     //get pokemon detail
-                    pokemonViewModel.update(name: name)
+                    pokemonViewModel.update(name: pokemon.name)
                 }
                 //keep progress row same size of loaded row
                 .frame(minWidth : 0, maxWidth : .infinity, minHeight : 0, maxHeight: rowHeight, alignment: .center).padding(5)
@@ -100,7 +121,7 @@ struct PokemonRow_Previews: PreviewProvider {
             let rowWidth : CGFloat = geometry.size.width
             let typeYOffset : CGFloat = (rowHeight / 2) + (((rowHeight / 2) - (rowHeight / 3))/2)
             let imageLength : CGFloat = rowHeight - 7
-            PokemonRow(name: "charmander", rowWidth: rowWidth, typeYOffset: typeYOffset, imageLength : imageLength, selectedPokemon: SelectedPokemon(), pokemonViewOpen: .constant(false))
+            PokemonRow(pokemon: Pokemon(name: "charmander"), rowWidth: rowWidth, typeYOffset: typeYOffset, imageLength : imageLength, selectedPokemon: SelectedPokemon(), pokemonViewOpen: .constant(false),  favourite: nil, isFavourite: false)
                 .preferredColorScheme(.light)
         }
         

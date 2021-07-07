@@ -6,25 +6,7 @@
 //
 import SwiftUI
 import URLImage
-struct RoundedCorner: Shape {
 
-    var radius: CGFloat = .infinity
-    var corners: UIRectCorner = .allCorners
-
-    
-    func path(in rect: CGRect) -> Path {
-        let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
-        return Path(path.cgPath)
-    }
-    
-}
-
-internal extension View {
-    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
-        clipShape( RoundedCorner(radius: radius, corners: corners) )
-    }
-}
-let backgroundColor : Color = Color(.sRGB, red:0.6, green: 0.6, blue:0.6, opacity: 0.95)
 class SelectedPokemon
 {
     var pokemonViewModel : PokemonViewModel? = nil
@@ -61,53 +43,48 @@ struct PokemonView : View {
                     .animation(.linear)
                     //close view when blur tapped
                     .onTapGesture(perform:
-                                    {open = false })
+                                    {
+                                        open = false
+                                        
+                                    })
                     //using offset and padding to overlay icon image over the pokemon view so need minus padding to extend the blur view
                     .padding(.bottom, -(rowHeight * 2))
                         
             }
-            //vstack containing 3 components - header, pokemon icon, and stats
+            //vstack containing 3 components - header, pokemon icon, and stats (+ blur at bottom to fill safe area)
             VStack(alignment: .leading, spacing : 0){
-                Button(action: {
-                    if (!open)
-                    {
-                        open = true
-                    }
-                }){
-                    //hstack containing the pokemon header
-                    HStack(alignment : .center){
-                        //zstack containing the pokemon name and pokemon type. Layout is different when the pokemon view is open or closed
-                        ZStack(alignment : .leading){
-                            PokemonNameView(pokemon: selectedPokemon.pokemonViewModel)
-                                .frame(alignment : .leading)
-                            //position type view based on size of pokemon name
-                            GeometryReader{geometry in
-                                PokemonTypeView(rowWidth: screenGeometry.size.width, pokemon: selectedPokemon.pokemonViewModel).frame(height: typeHeight).offset(x: open ? 0 : geometry.size.width + 10, y: open ? geometry.size.height + 10: 0)
-                            }
-                        }.fixedSize().offset(x: rowHeight + 10)                   .frame(height: rowHeight, alignment: .center)
-                        if (open)
-                        {
-                            Spacer()
-                            HStack{
-                                // display height and weight when pokemon view is open
-                                VStack(alignment: .trailing){
-                                    Text("Height:")
-                                    Text("Weight:")
-                                }.frame(alignment: .trailing)
-                                VStack(alignment: .leading){
-                                    Text(selectedPokemon.pokemonViewModel!.height)
-                                    Text(selectedPokemon.pokemonViewModel!.weight)
-                                }.frame(alignment: .leading)
-                            }
-                            .frame(height: rowHeight, alignment: .trailing)
-                            .padding(.trailing, 10)
-                            .foregroundColor(.white).font(.system(size:  screenGeometry.size.width * 0.04))
+               //hstack containing the pokemon header
+                HStack(alignment : .center){
+                    //zstack containing the pokemon name and pokemon type. Layout is different when the pokemon view is open or closed
+                    ZStack(alignment : .leading){
+                        PokemonNameView(pokemon: selectedPokemon.pokemonViewModel)
+                            .frame(alignment : .leading)
+                        //position type view based on size of pokemon name
+                        GeometryReader{geometry in
+                            PokemonTypeView(rowWidth: screenGeometry.size.width, pokemon: selectedPokemon.pokemonViewModel).frame(height: typeHeight).offset(x: open ? 0 : geometry.size.width + 10, y: open ? geometry.size.height + 10: 0)
                         }
+                    }.fixedSize().offset(x: rowHeight + 10)                   .frame(height: rowHeight, alignment: .center)
+                    if (open)
+                    {
+                        Spacer()
+                        HStack{
+                            // display height and weight when pokemon view is open
+                            VStack(alignment: .trailing){
+                                Text("Height:")
+                                Text("Weight:")
+                            }.frame(alignment: .trailing)
+                            VStack(alignment: .leading){
+                                Text(selectedPokemon.pokemonViewModel!.height)
+                                Text(selectedPokemon.pokemonViewModel!.weight)
+                            }.frame(alignment: .leading)
+                        }
+                        .frame(height: rowHeight, alignment: .trailing)
+                        .padding(.trailing, 10)
+                        .foregroundColor(.white).font(.system(size:  screenGeometry.size.width * 0.04))
                     }
-                    .offset(y : open ? rowHeight * 2 : 0)
-                     .frame(width : screenGeometry.size.width, height : rowHeight, alignment : .topLeading)
-                                   }
-
+                }
+                .offset(y : open ? rowHeight * 2 : 0)
+                 .frame(width : screenGeometry.size.width, height : rowHeight, alignment : .topLeading)
                 //show icon when the pokemon view is open
                  if (open)
                  {
@@ -128,7 +105,7 @@ struct PokemonView : View {
                               .padding(5)
                               .clipShape(Circle())
                               .shadow(radius: 10)
-                              .overlay(Circle().stroke(selectedPokemon.pokemonViewModel!.typeColor, lineWidth: 5)).background(listColor)
+                            .overlay(Circle().stroke(selectedPokemon.pokemonViewModel!.typeColor, lineWidth: 5)).background(Color.pokadexListColor)
                       }
                       //also clip the imageView as circle to allow the name bar to pass underneath
                       .clipShape(Circle())
@@ -143,39 +120,55 @@ struct PokemonView : View {
                 {
                     PokemonStatsView(pokemon: selectedPokemon.pokemonViewModel, screenGeometry: screenGeometry)
                          .frame(maxWidth: .infinity, alignment : .topLeading)
+                   
+                    //blur at bottom of screen to fill safe area when open
+                    PokemonViewBlur(effect: UIBlurEffect(style: .regular))
+                        .opacity(0.4)
+                        .edgesIgnoringSafeArea(.all)
+                        .frame(maxWidth : .infinity, maxHeight : .infinity)
+                        .contentShape(Rectangle())
+                        .transition(.opacity)
+                        .animation(.linear)
                 }
             }.frame(alignment : .topLeading)
             .background(
-                backgroundColor
+                Color.pokadexBackgroundColor
                     //offset background when open, so it sits under the icon
                     .offset(y : open ? rowHeight * 2 : 0)
                     .cornerRadius(10, corners: [.topRight, .topLeft])
                     //colored boreder around the background
                     .overlay(RoundedCorner(radius: 10, corners: [.topRight, .topLeft]).stroke(selectedPokemon.pokemonViewModel != nil ? selectedPokemon.pokemonViewModel!.typeColor : .clear, lineWidth: 5).offset(y : open ? rowHeight * 2 : 0).padding(.bottom, open ? rowHeight * 2 : 0))
-                    )
+                    .onTapGesture {
+                        if (!open)
+                        {
+                            open = true
+                        }
+                    }
+            )
             //add gesture to background to open/close swipe up/down
-                    .gesture(
-                        DragGesture()
-                            .onEnded { value in
-                            if (open)
-                            {
-                                if (value.startLocation.y < value.translation.height)
-                                {
-                                    open = false
-                                }
-                            }else if (value.translation.height < value.startLocation.y)
-                            {
-                                open = true
-                            }
+            .gesture(
+                DragGesture()
+                    .onEnded { value in
+                    if (open)
+                    {
+                        if (value.startLocation.y < value.translation.height)
+                        {
+                            open = false
+                        }
+                    }else if (value.translation.height < value.startLocation.y)
+                    {
+                        open = true
+                    }
+                   
+                  }
+            )
+    
                            
-                          }
-                    )
-                
-                }
-                .frame(width: screenGeometry.size.width, height: screenGeometry.size.height, alignment: .topLeading)
-                    .offset(y: selectedPokemon.pokemonViewModel == nil ? screenGeometry.size.height : self.open ? 0 : screenGeometry.size.height - rowHeight)
-                   .transition(.move(edge: .bottom))
-                   .animation(Animation.spring(response: 0.5, dampingFraction: 0.75, blendDuration: 1))
+        }
+        .frame(width: screenGeometry.size.width, height: screenGeometry.size.height, alignment: .topLeading)
+            .offset(y: selectedPokemon.pokemonViewModel == nil ? screenGeometry.size.height : self.open ? 0 : screenGeometry.size.height - rowHeight)
+           .transition(.move(edge: .bottom))
+           .animation(Animation.spring(response: 0.5, dampingFraction: 0.75, blendDuration: 1))
 
     }
 }

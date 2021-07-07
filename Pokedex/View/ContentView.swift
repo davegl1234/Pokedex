@@ -8,9 +8,10 @@
 import SwiftUI
 import CoreData
 
-let rowHeight : CGFloat = 61
+let rowHeight : CGFloat = 80
 var typeHeight : CGFloat = rowHeight / 3
 struct ContentView: View {
+    //use viewContext to add/delete from core data
     @Environment(\.managedObjectContext) private var viewContext
     //selected pokemon class containing pointer to pokemonViewModel. Passed into list view and row (updated when a row is clicked) and into pokemon view for when the pokemon view is opened
     var selectedPokemon : SelectedPokemon = SelectedPokemon()
@@ -18,15 +19,17 @@ struct ContentView: View {
     @State var pokemonViewOpen : Bool = false
     //pokemon list filtered by following name prefix. It is passed into the search bar and the pokemon list.
     @State var searchString : String = ""
-    
+    //show only favourited pokemon in the list
+    @State var favouriteFilter : Bool = false
     var body: some View {
+        //TODO - implement grid pathway for ipads
         ZStack
         {
             GeometryReader { geometry in
                 //list of pokemon
-                PokemonListView(selectedPokemon: selectedPokemon, pokemonViewOpen: $pokemonViewOpen, rowWidth: geometry.size.width, searchString: $searchString)
+                PokemonListView(selectedPokemon: selectedPokemon, pokemonViewOpen: $pokemonViewOpen, rowWidth: geometry.size.width, searchString: $searchString, favouriteFilter: $favouriteFilter)
                 //search bar for filtering pokemon by prefix
-                PokemonSearchBar(searchString: $searchString)
+                PokemonSearchBar(searchString: $searchString, favouriteFilter: $favouriteFilter)
                 //pokemon detail view
                 PokemonView(selectedPokemon: selectedPokemon, open: $pokemonViewOpen, screenGeometry: geometry)
             }
